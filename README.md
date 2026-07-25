@@ -62,6 +62,10 @@ While Hana's default personality is an anime companion, the underlying platform 
 ### Real-Time Voice Conversation
 Silero-VAD detects speech onset, Groq Whisper Large v3 Turbo transcribes the utterance, DeepSeek V4 Flash generates the response, and a locally fine-tuned CosyVoice3 model streams the audio back — end-to-end latency under 3 seconds. True token-level streaming begins audio playback before the full response is synthesized.
 
+<p align="center">
+  <img src="assets/screenshots/chat-interface.png" alt="Kuroi Hana chat interface" width="700"/>
+</p>
+
 ### Emotion-Driven 3D Avatar
 Every LLM response carries a structured emotion tag (`[WARM]`, `[TEASING]`, `[FLUSTERED]`, `[SMUG|EMBARRASSED:0.3]`...) that simultaneously drives TTS voice style, VRM blendshapes, idle behaviour, and animation selection. Dual-emotion blending enables compound expressions with configurable intensity ratios. Lerp-based residue transitions create organic expression shifts — outgoing emotions decay over ~10 seconds rather than snapping abruptly.
 
@@ -162,6 +166,10 @@ Runs as a background daemon thread on a 3-second poll cycle:
 **Privacy:** `Ctrl+Shift+P` pauses the perception engine. `privacy_blacklist.txt` blocks specific domains. Incognito/private browser windows are auto-detected and suppressed.
 
 ### Unity — VRM 3D Avatar Renderer
+
+<p align="center">
+  <img src="assets/screenshots/unity-avatar-closeup.png" alt="Kuroi Hana — VRM 3D avatar close-up in Unity" width="700"/>
+</p>
 
 The Unity frontend is a clean separation of concerns — 16 C# scripts, exactly 1 Animator parameter (`State` Int 0–4: Idle/Listening/Thinking/Talking/Custom), and 22 WebSocket message types for bidirectional communication.
 
@@ -363,13 +371,33 @@ Every subsystem module imports within a try/except block. If the vision model fa
 
 ---
 
-## About the Author
+## Acknowledgments
 
-Built by **Ammar Abdat** — software engineer focused on AI systems, real-time architectures, and full-stack integration.
+This project would not exist without the remarkable open-source work it builds upon:
 
-[![GitHub](https://img.shields.io/badge/GitHub-Jiriki2108-181717?logo=github)](https://github.com/Jiriki2108)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-ammar--abdat-0A66C2?logo=linkedin)](https://www.linkedin.com/in/ammar-abdat-23abb1183)
+| Project | Role in Kuroi Hana |
+|---------|-------------------|
+| [CosyVoice3](https://github.com/FunAudioLLM/CosyVoice) (Alibaba) | Streaming TTS engine, fine-tuned for Hana's voice |
+| [DeepSeek](https://www.deepseek.com/) | Primary LLM provider (V4 Flash / V4 Pro) via OpenAI-compatible API |
+| [Groq](https://groq.com/) | Whisper Large v3 Turbo for speech transcription |
+| [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL) (Alibaba) | On-device vision model for screen understanding |
+| [Silero VAD](https://github.com/snakers4/silero-vad) | Voice activity detection |
+| [ChromaDB](https://www.trychroma.com/) | Persistent vector database for typed memory collections |
+| [FAISS](https://github.com/facebookresearch/faiss) (Meta) | In-memory dense semantic retrieval |
+| [SentenceTransformers](https://www.sbert.net/) | all-MiniLM-L6-v2 embeddings |
+| [SpeexDSP](https://www.speex.org/) | NLMS adaptive filter for acoustic echo cancellation |
+| [Unsloth](https://github.com/unslothai/unsloth) | Full-parameter fine-tuning of local LLMs |
+| [VRM](https://vrm.dev/) | 3D avatar format specification |
+| [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) | Screen text extraction |
+| [Whisper](https://github.com/openai/whisper) (OpenAI) | Speech recognition model architecture |
+
+Hana's default personality prompt and character design are original work. Voice training data was synthetically generated. The architecture, orchestration, memory system, perception pipeline, Unity integration, and all connecting code are custom-built.
 
 ---
 
-*Built through late-night debugging sessions, questionable dietary choices, and too much Monster Hunter.*
+## About
+
+Built by **Ammar Abdat**. This project began as curiosity about whether real-time AI interaction could feel natural, and grew into a year-long engineering effort spanning speech processing, computer vision, semantic memory, game engine programming, and distributed systems — all running on a single GPU.
+
+[![GitHub](https://img.shields.io/badge/GitHub-Jiriki2108-181717?logo=github)](https://github.com/Jiriki2108)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-ammar--abdat-0A66C2?logo=linkedin)](https://www.linkedin.com/in/ammar-abdat-23abb1183)
