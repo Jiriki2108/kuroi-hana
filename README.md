@@ -45,15 +45,10 @@ While Hana's default personality is an anime companion, the underlying platform 
 
 ## Demo
 
-<p align="center">
-  <strong>Video walkthrough coming soon.</strong> For now, explore the <a href="#architecture">system architecture</a> and <a href="docs/ARCHITECTURE.md">technical deep dive</a>.
-</p>
-
-| Cut | Length | Audience | Status |
-|-----|--------|----------|--------|
-| **Recruiter Highlight** | 60–90 sec | LinkedIn, résumé, quick scan | In production |
-| **Technical Showcase** | ~5 min | Hiring manager deep-dive | In production |
-| **Full Walkthrough** | ~25 min | Engineering architecture tour | Recorded |
+| Video | Length | Link |
+|-------|--------|------|
+| **Full Walkthrough** | 20 min | [Watch on YouTube](https://youtu.be/FxSMYqC5qM8) |
+| **Destructive Tool Demo** | — | [Watch on YouTube](https://youtu.be/2ESdMBgpbNY) |
 
 ---
 
@@ -69,8 +64,16 @@ Silero-VAD detects speech onset, Groq Whisper Large v3 Turbo transcribes the utt
 ### Emotion-Driven 3D Avatar
 Every LLM response carries a structured emotion tag (`[WARM]`, `[TEASING]`, `[FLUSTERED]`, `[SMUG|EMBARRASSED:0.3]`...) that simultaneously drives TTS voice style, VRM blendshapes, idle behaviour, and animation selection. Dual-emotion blending enables compound expressions with configurable intensity ratios. Lerp-based residue transitions create organic expression shifts — outgoing emotions decay over ~10 seconds rather than snapping abruptly.
 
+<p align="center">
+  <img src="assets/gifs/emotion-transition.gif" alt="Emotion transition — WARM to TEASING to FLUSTERED" width="600"/>
+</p>
+
 ### Screen Awareness & Computer Vision
 A multi-modal perception pipeline reads the active foreground application, captures the browser URL via Windows UIAutomation, monitors clipboard contents, and performs change-detection-triggered screen capture. Qwen2.5-VL-3B (local GPU) generates natural-language descriptions of screen content. Tesseract OCR extracts text from IDE windows. WASAPI loopback monitors system audio output.
+
+<p align="center">
+  <img src="assets/gifs/screen-awareness.gif" alt="Hana sees screen content and comments without being told" width="600"/>
+</p>
 
 ### Agentic Tool System — 12 Autonomous Tools
 The router LLM (DeepSeek V4 Flash, temperature=0) selects tools via OpenAI-compatible function calling. Tools are split into two security tiers:
@@ -78,6 +81,10 @@ The router LLM (DeepSeek V4 Flash, temperature=0) selects tools via OpenAI-compa
 **Non-destructive** (always available): `examine_screen`, `read_verbatim_text`, `web_search` (4-tier fallback: Tavily → Serper → LangSearch → DuckDuckGo), `query_memory`, `read_clipboard`, `read_project_file`, `append_hana_note`
 
 **Destructive** (gated behind Unity toggle): `write_clipboard`, `copy_url_to_clipboard`, `media_control`, `set_volume`, `edit_project_file`
+
+<p align="center">
+  <img src="assets/gifs/tool-orchestration.gif" alt="Router LLM selects a tool, executes it, and Hana responds with the result" width="600"/>
+</p>
 
 All tools enforce 8-second hard timeouts. File-path tools are sandboxed to approved directories.
 
@@ -93,6 +100,10 @@ Five retrieval paths operate in parallel, each serving a distinct purpose:
 | **Cultural** | ChromaDB (in-memory) | Reddit headlines + RSS feeds, refreshed hourly, filtered by current screen context |
 
 A janitor LLM classifies conversations after every ~15 unclassified messages. Keyword search and named-entity matching complement dense semantic retrieval. All injected context follows the Reactive Identity principle — raw facts only, never behavioural directives.
+
+<p align="center">
+  <img src="assets/gifs/memory-retrieval.gif" alt="Hana retrieves personal facts from layered ChromaDB + FAISS memory" width="600"/>
+</p>
 
 ### Proactive Autonomy — The Drive System
 Four internal drives (boredom, energy, curiosity, affection) update every 60 seconds. A sigmoid-based function computes speech probability — when curiosity spikes from a screen change or boredom accumulates from silence, Hana speaks unprompted. Energy follows a circadian curve. Affection rises gradually across sessions and influences tone and autonomous spatial behaviour.
