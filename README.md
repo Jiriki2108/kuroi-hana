@@ -390,6 +390,8 @@ This project would not exist without the remarkable open-source work it builds u
 | [VRM](https://vrm.dev/) | 3D avatar format specification |
 | [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) | Screen text extraction |
 | [Whisper](https://github.com/openai/whisper) (OpenAI) | Speech recognition model architecture |
+| [Nibbles VRM Avatar](https://vrmodels.store/avatars/43460-nibbles.html) | Hana's 3D character model |
+| [Bebe Blue Room](https://booth.pm/ja/items/4888517) | Unity 3D environment and scene |
 
 Hana's default personality prompt and character design are original work. Voice training data was synthetically generated. The architecture, orchestration, memory system, perception pipeline, Unity integration, and all connecting code are custom-built.
 
