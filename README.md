@@ -38,8 +38,9 @@ While Hana's default personality is an anime companion, the underlying platform 
 - [Project Structure](#project-structure)
 - [Engineering Deep Dive](#engineering-deep-dive)
 - [Design Philosophy](#design-philosophy)
-- [Quick Start](#quick-start)
-- [About the Author](#about-the-author)
+- [About This Repository](#about-this-repository)
+- [Acknowledgments](#acknowledgments)
+- [About](#about)
 
 ---
 
@@ -47,8 +48,8 @@ While Hana's default personality is an anime companion, the underlying platform 
 
 | Video | Length | Link |
 |-------|--------|------|
-| **Full Walkthrough** | 20 min | [Watch on YouTube](https://youtu.be/FxSMYqC5qM8) |
-| **Destructive Tool Demo** | — | [Watch on YouTube](https://youtu.be/2ESdMBgpbNY) |
+| **Full Walkthrough** | 22 min | [Watch on YouTube](https://youtu.be/FxSMYqC5qM8) |
+| **Destructive Tool Demo** | 3 min | [Watch on YouTube](https://youtu.be/2ESdMBgpbNY) |
 
 ---
 
@@ -66,6 +67,12 @@ Every LLM response carries a structured emotion tag (`[WARM]`, `[TEASING]`, `[FL
 
 <p align="center">
   <img src="assets/gifs/emotion-transition.gif" alt="Emotion transition — WARM to TEASING to FLUSTERED" width="600"/>
+</p>
+
+<p align="center">
+  <img src="assets/gifs/expression-fluid.gif" alt="Fluid expression animation" width="280"/>
+  <img src="assets/gifs/expression-smirk.gif" alt="Smirk expression" width="280"/>
+  <img src="assets/gifs/expression-thinking.gif" alt="Thinking expression" width="280"/>
 </p>
 
 ### Screen Awareness & Computer Vision
@@ -198,6 +205,10 @@ The Unity frontend is a clean separation of concerns — 16 C# scripts, exactly 
 - **HanaLocomotionController** — NavMeshAgent-based movement with personal-space radius.
 - **HanaSpatialController** — Object pickup/drop/present sequences with approach navigation.
 - **FootIKController + HanaArmIKController** — Inverse kinematics for grounded movement and reaching.
+
+<p align="center">
+  <img src="assets/gifs/avatar-dance.gif" alt="VRM avatar with custom spring-bone physics, Mixamo animation, and emotion-driven blendshapes" width="600"/>
+</p>
 
 ---
 
@@ -367,18 +378,11 @@ Every subsystem module imports within a try/except block. If the vision model fa
 
 ---
 
-## Quick Start
+## About This Repository
 
-```powershell
-# 1. Launch the stack
-.\launch_hana_cloud.bat
+Kuroi Hana is a **personal engineering project** and **portfolio showcase**. This repository documents the architecture, design decisions, and engineering challenges behind the platform. It is not a distributable product — the source code is private. What's here is a technical reference for recruiters and engineers interested in the system design.
 
-# 2. Open Unity project and press Play
-
-# 3. Speak or type into chat.html
-```
-
-**Requirements:** Windows 11, Python 3.10+ (conda env `cosyvoice3`), Unity 2022.3+, NVIDIA GPU with 24GB+ VRAM, Groq API key, DeepSeek API key.
+Hardware and services used: Windows 11, NVIDIA RTX 5090 (24GB+ VRAM), Python 3.10+, Unity 2022.3+, DeepSeek API, Groq API, ElevenLabs.
 
 ---
 
