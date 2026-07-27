@@ -121,6 +121,10 @@ Voice Activity Detection is the sole interrupt authority — no wake word requir
 ### Spatial Interaction (Unity)
 NavMeshAgent locomotion with personal-space radius, object pickup/present/drop sequences, and approach-with-offset navigation. Object permanence tracking across 10 3D-room objects — Hana detects when items have moved from their expected zones.
 
+<p align="center">
+  <img src="assets/gifs/spatial-pickup.gif" alt="Hana navigating to the kangaroo plushie, picking it up, and bringing it to the user" width="600"/>
+</p>
+
 ---
 
 ## Architecture
